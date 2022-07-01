@@ -1,10 +1,10 @@
 FROM registry.access.redhat.com/ubi8/ubi
 MAINTAINER Jaroslaw Stakun jstakun@redhat.com
-RUN yum install -y --nodocs python38; yum clean all
 WORKDIR /app
 COPY ./requirements.txt ./*.py /app/
 COPY ./models/ /app/models/
-RUN ls -al && python3 -m pip install -r requirements.txt
+RUN yum install -y --nodocs python38; yum clean all && \
+    python3 -m pip install -r requirements.txt
 EXPOSE 8080
 ENTRYPOINT ["gunicorn"]
 CMD ["wsgi --config gunicorn_config.py"]
