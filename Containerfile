@@ -1,5 +1,6 @@
 FROM registry.access.redhat.com/ubi8/ubi
 MAINTAINER Jaroslaw Stakun jstakun@redhat.com
+ENV PIP_INDEX_URL=""
 WORKDIR /app
 COPY ./requirements.txt ./*.py ./blank.jpeg /app/
 COPY ./models/ /app/models/
