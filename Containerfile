@@ -3,7 +3,7 @@ MAINTAINER Jaroslaw Stakun jstakun@redhat.com
 ARG PIP_INDEX_URL
 ARG PIP_TRUSTED_HOST
 ENV APP_ROOT=/app
-ENV PATH=${APP_ROOT}/bin:$PATH
+ENV PATH=${APP_ROOT}:$PATH
 WORKDIR ${APP_ROOT}
 COPY ./requirements.txt ./*.py ./blank.jpeg ${APP_ROOT}/
 COPY ./models/ ${APP_ROOT}/models/
