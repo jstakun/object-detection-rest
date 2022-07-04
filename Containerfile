@@ -2,6 +2,7 @@ FROM registry.access.redhat.com/ubi8/ubi
 MAINTAINER Jaroslaw Stakun jstakun@redhat.com
 ARG PIP_INDEX_URL
 ARG PIP_TRUSTED_HOST
+ENV PATH=/root/.local/bin:$PATH
 WORKDIR /app
 COPY ./requirements.txt ./*.py ./blank.jpeg /app/
 COPY ./models/ /app/models/
