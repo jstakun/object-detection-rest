@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minial
+FROM registry.access.redhat.com/ubi8/ubi-minimal
 MAINTAINER Jaroslaw Stakun jstakun@redhat.com
 ARG PIP_INDEX_URL
 ARG PIP_TRUSTED_HOST
