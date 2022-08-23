@@ -6,8 +6,8 @@ ENV APP_ROOT=/app
 WORKDIR ${APP_ROOT}
 COPY ./requirements.txt ./*.py ./blank.jpeg ${APP_ROOT}/
 COPY ./models/ ${APP_ROOT}/models/
-RUN yum install -y --nodocs python38; yum clean all && \
-    yum list installed && python3 --version \
+RUN yum remove -y python3* && \
+    yum install -y --nodocs python38; yum clean all && \
     python3.8 -m pip install --no-cache-dir -r requirements.txt 
 USER 1001
 EXPOSE 8080
