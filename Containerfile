@@ -6,6 +6,7 @@ ENV APP_ROOT=/app
 WORKDIR ${APP_ROOT}
 COPY ./requirements.txt ./*.py ./blank.jpeg ${APP_ROOT}/
 COPY ./models/ ${APP_ROOT}/models/
+#RUN yum list installed
 RUN yum remove -y python3-urllib3; yum install -y --nodocs python38; yum clean all && \
     python3.8 -m pip install --no-cache-dir -r requirements.txt 
 USER 1001
