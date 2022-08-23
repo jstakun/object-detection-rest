@@ -9,7 +9,7 @@ COPY ./models/ ${APP_ROOT}/models/
 RUN yum update -y && \
     yum install -y --nodocs python38; yum clean all && \
     yum list installed && \
-    python3 -m pip install --no-cache-dir -r requirements.txt 
+    python38 -m pip install --no-cache-dir -r requirements.txt 
 USER 1001
 EXPOSE 8080
 CMD ["gunicorn", "wsgi", "--config", "gunicorn_config.py"]
