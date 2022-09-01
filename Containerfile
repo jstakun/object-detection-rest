@@ -7,7 +7,7 @@ WORKDIR ${APP_ROOT}
 COPY ./requirements.txt ./*.py ./blank.jpeg ${APP_ROOT}/
 COPY ./models/ ${APP_ROOT}/models/
 RUN microdnf install -y python38 && \
-    python3.8 -m pip install --no-cache-dir -r requirements.txt
+    python3.8 -m pip install --upgrade pip --no-cache-dir -r requirements.txt
 USER 1001
 EXPOSE 8080
 CMD ["gunicorn", "wsgi", "--config", "gunicorn_config.py"]
