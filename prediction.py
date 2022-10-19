@@ -1,11 +1,13 @@
 import tensorflow as tf
 import base64
+from prometheus_client import Summary
 
 model_dir = 'models/openimages_v4_ssd_mobilenet_v2_1'
 saved_model = tf.saved_model.load(model_dir)
 detector = saved_model.signatures['default']
+PREDICT_REQUEST_TIME = Summary('predict_processing_seconds', 'Time spent on predict request')
 
-
+@PREDICT_REQUEST_TIME.time()
 def predict(body):
     base64img = body.get('image')
     img_bytes = base64.decodebytes(base64img.encode())
