@@ -7,6 +7,7 @@ WORKDIR ${APP_ROOT}
 COPY ./requirements.txt ./*.py ./blank.jpeg ${APP_ROOT}/
 COPY ./models/ ${APP_ROOT}/models/
 RUN microdnf install -y python39 && \
+    rpm -e --nodeps $(rpm -qa '*rpm*' '*dnf*' '*libsolv*' '*hawkey*' 'yum*') && \
     python3.9 -m pip install --upgrade pip --no-cache-dir -r requirements.txt
 USER 1001
 EXPOSE 8080
