@@ -3,12 +3,12 @@ import base64
 import tensorflow_hub as hub
 from prometheus_client import Summary
 
-model_dir = 'models/openimages_v4_ssd_mobilenet_v2_1'
-saved_model = tf.saved_model.load(model_dir)
-detector = saved_model.signatures['default']
+#model_dir = 'models/openimages_v4_ssd_mobilenet_v2_1'
+#saved_model = tf.saved_model.load(model_dir)
+#detector = saved_model.signatures['default']
 
-#module_handle = "https://tfhub.dev/google/faster_rcnn/openimages_v4/inception_resnet_v2/1"
-#detector = hub.load(module_handle).signatures['default']
+module_handle = "https://tfhub.dev/google/faster_rcnn/openimages_v4/inception_resnet_v2/1"
+detector = hub.load(module_handle).signatures['default']
 
 PREDICT_REQUEST_TIME = Summary('predict_processing_seconds', 'Time spent on predict request')
 
