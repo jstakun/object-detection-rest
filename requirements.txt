@@ -4,6 +4,7 @@ gunicorn
 prometheus_client
 ## Data Science libraries
 tensorflow
+tensorflow-hub
 matplotlib
 six
 numpy
