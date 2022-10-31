@@ -2,7 +2,8 @@ import tensorflow as tf
 import base64
 from prometheus_client import Summary
 
-model_dir = 'models/openimages_v4_ssd_mobilenet_v2_1'
+#model_dir = 'models/openimages_v4_ssd_mobilenet_v2_1'
+model_dir = 'models/faster_rcnn_openimages_v4_inception_resnet_v2_1'
 saved_model = tf.saved_model.load(model_dir)
 detector = saved_model.signatures['default']
 PREDICT_REQUEST_TIME = Summary('predict_processing_seconds', 'Time spent on predict request')
