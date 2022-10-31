@@ -1,5 +1,6 @@
 import tensorflow as tf
 import base64
+import tensorflow_hub as hub
 from prometheus_client import Summary
 
 #model_dir = 'models/openimages_v4_ssd_mobilenet_v2_1'
