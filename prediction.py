@@ -10,7 +10,7 @@ detector = saved_model.signatures['default']
 #module_handle = "https://tfhub.dev/google/faster_rcnn/openimages_v4/inception_resnet_v2/1"
 #detector = hub.load(module_handle).signatures['default']
 
-PREDICT_REQUEST_TIME = Summary('predict_processing_seconds', 'Time spent on predict request')
+PREDICT_REQUEST_TIME = Summary('object_detection_rest.predict_processing_seconds', 'Time spent on predict request')
 
 @PREDICT_REQUEST_TIME.time()
 def predict(body):
