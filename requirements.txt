@@ -1,8 +1,8 @@
-## Application specific 
+#Application specific 
 Flask
 gunicorn
 prometheus_client
-## Data Science libraries
+#Data Science libraries
 tensorflow
 tensorflow-hub
 matplotlib
