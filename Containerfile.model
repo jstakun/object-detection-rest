@@ -6,10 +6,10 @@ ENV APP_ROOT=/app
 WORKDIR ${APP_ROOT}
 COPY ./requirements.txt ./*.py ./blank.jpeg ${APP_ROOT}/
 COPY ./models/ ${APP_ROOT}/models/
-RUN microdnf install -y python39 wget tar && \
+RUN microdnf install -y python39 wget tar gzip && \
     wget https://storage.googleapis.com/tfhub-modules/google/faster_rcnn/openimages_v4/inception_resnet_v2/1.tar.gz && \
     tar -xvf 1.tar.gz -C ./models/faster_rcnn_openimages_v4_inception_resnet_v2_1 && \
-    rm 1.tar.gz && microdnf remove -y wget tar && \
+    rm 1.tar.gz && microdnf remove -y wget tar gzip && \
     rpm -e --nodeps $(rpm -qa '*rpm*' '*dnf*' '*libsolv*' '*hawkey*' 'yum*') && \
     python3.9 -m pip install --upgrade pip --no-cache-dir -r requirements.txt
 USER 1001
