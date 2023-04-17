@@ -2,13 +2,15 @@ import tensorflow as tf
 import base64
 import os
 from prometheus_client import Summary
-import sys
+import logging
 
 model = os.environ.get('OBJECT_DETECTION_MODEL', 'openimages_v4_ssd_mobilenet_v2_1')
 model_dir = 'models/' + model
 
 saved_model = tf.saved_model.load(model_dir)
 signature = os.environ.get('OBJECT_DETECTION_MODEL_SIGNATURE', 'default')
+logging.info('Loaded model with signatures')
+logging.info(list(saved_model.signatures.keys()))
 detector = saved_model.signatures[signature]
 
 PREDICT_REQUEST_TIME = Summary('object_detection_predict_processing_seconds', 'Time spent on predict request')
@@ -58,11 +60,8 @@ def clean_detections(detections):
 
 
 def preload_model():
-    print('Preload model with signatures ', file=sys.stdout)
-    print(list(saved_model.signatures.keys()), file=sys.stdout)
     blank_jpg = tf.io.read_file('blank.jpeg')
     blank_img = tf.image.decode_jpeg(blank_jpg, channels=3)
     detector(tf.image.convert_image_dtype(blank_img, tf.float32)[tf.newaxis, ...])
-
 
 preload_model()
