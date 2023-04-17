@@ -2,6 +2,7 @@ import tensorflow as tf
 import base64
 import os
 from prometheus_client import Summary
+import sys
 
 model = os.environ.get('OBJECT_DETECTION_MODEL', 'openimages_v4_ssd_mobilenet_v2_1')
 model_dir = 'models/' + model
