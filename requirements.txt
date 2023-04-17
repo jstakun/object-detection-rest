@@ -2,7 +2,6 @@ Flask
 gunicorn
 prometheus_client
 tensorflow
-tensorflow-hub
 matplotlib
 six
 numpy
