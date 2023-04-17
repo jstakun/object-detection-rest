@@ -9,8 +9,8 @@ model_dir = 'models/' + model
 
 saved_model = tf.saved_model.load(model_dir)
 signature = os.environ.get('OBJECT_DETECTION_MODEL_SIGNATURE', 'default')
-logging.info('Loaded model with signatures')
-logging.info(list(saved_model.signatures.keys()))
+logging.warning('Loaded model with signatures')
+logging.warning(list(saved_model.signatures.keys()))
 detector = saved_model.signatures[signature]
 
 PREDICT_REQUEST_TIME = Summary('object_detection_predict_processing_seconds', 'Time spent on predict request')
