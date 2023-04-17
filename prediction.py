@@ -7,8 +7,8 @@ model = os.environ.get('OBJECT_DETECTION_MODEL', 'openimages_v4_ssd_mobilenet_v2
 model_dir = 'models/' + model
 
 saved_model = tf.saved_model.load(model_dir)
-signatures = os.environ.get('OBJECT_DETECTION_MODEL_SIGNATURE', 'default')
-detector = saved_model.signatures[signatures]
+signature = os.environ.get('OBJECT_DETECTION_MODEL_SIGNATURE', 'default')
+detector = saved_model.signatures[signature]
 
 PREDICT_REQUEST_TIME = Summary('object_detection_predict_processing_seconds', 'Time spent on predict request')
 
