@@ -9,9 +9,9 @@ application = Flask(__name__)
 @application.before_first_request
 def setup_logging():
     if not application.debug:
-        application.logger.addHandler(logging.StreamHandler())
-        application.logger.setLevel(logging.INFO)
-
+        gunicorn_logger = logging.getLogger('gunicorn.error')
+        application.logger.handlers = gunicorn_logger.handlers
+        
 @application.route('/')
 @application.route('/status')
 def status():
