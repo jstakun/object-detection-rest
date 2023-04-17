@@ -7,8 +7,8 @@ model = os.environ.get('OBJECT_DETECTION_MODEL', 'openimages_v4_ssd_mobilenet_v2
 model_dir = 'models/' + model
 
 saved_model = tf.saved_model.load(model_dir)
-signatures = list(saved_model.signatures.keys())
-detector = saved_model.signatures[signatures[0]]
+signatures = os.environ.get('OBJECT_DETECTION_MODEL_SIGNATURES', 'default')
+detector = saved_model.signatures[signatures]
 
 PREDICT_REQUEST_TIME = Summary('object_detection_predict_processing_seconds', 'Time spent on predict request')
 
@@ -57,6 +57,8 @@ def clean_detections(detections):
 
 
 def preload_model():
+    print('Preload model with signatures ')
+    print(list(saved_model.signatures.keys()))
     blank_jpg = tf.io.read_file('blank.jpeg')
     blank_img = tf.image.decode_jpeg(blank_jpg, channels=3)
     detector(tf.image.convert_image_dtype(blank_img, tf.float32)[tf.newaxis, ...])
