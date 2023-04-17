@@ -58,8 +58,8 @@ def clean_detections(detections):
 
 
 def preload_model():
-    print('Preload model with signatures ')
-    print(list(saved_model.signatures.keys()))
+    print('Preload model with signatures ', file=sys.stdout)
+    print(list(saved_model.signatures.keys()), file=sys.stdout)
     blank_jpg = tf.io.read_file('blank.jpeg')
     blank_img = tf.image.decode_jpeg(blank_jpg, channels=3)
     detector(tf.image.convert_image_dtype(blank_img, tf.float32)[tf.newaxis, ...])
