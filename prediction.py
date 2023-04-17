@@ -1,6 +1,5 @@
 import tensorflow as tf
 import base64
-import tensorflow_hub as hub
 import os
 from prometheus_client import Summary
 
